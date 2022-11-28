@@ -1,0 +1,211 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ (isNew ?'pages.project.header.new.title':'pages.project.header.edit.title') | localize }}
+      <b>{{currentProject.title}}</b></ion-title>
+    <ion-buttons slot="start">
+      <ion-button shape="round" (click)="onBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.title' | localize}}
+                </ion-label>
+                <ion-input [maxlength]="form.maxLength.title" class="form-item-input" [(ngModel)]="currentProject.title"
+                  (ionBlur)="form.touched.title = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.title && form.errors.title" color="danger" class="form-item-error">
+                {{form.errors.title | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.subtitle' | localize}}
+                </ion-label>
+                <ion-input [maxlength]="form.maxLength.subtitle" class="form-item-input"
+                  [(ngModel)]="currentProject.subtitle" (ionBlur)="form.touched.subtitle = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.subtitle && form.errors.subtitle" color="danger" class="form-item-error">
+                {{form.errors.subtitle | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.country' | localize}}
+                </ion-label>
+                <ion-input [maxlength]="form.maxLength.country" class="form-item-input"
+                  [(ngModel)]="currentProject.country" (ionBlur)="form.touched.country = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.country && form.errors.country" color="danger" class="form-item-error">
+                {{form.errors.country | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row *ngIf="currentProject.images.length">
+            <ion-col>
+              <ion-label class="form-item-label">
+                {{'pages.project.images' | localize}}
+              </ion-label>
+              <div class="form-item-images-container">
+                <div class="form-item-images-wrapper" *ngFor="let img of currentProject.images">
+                  <ion-button class="form-item-images-btn" shape="round" slot="icon-only" color="danger"
+                    (click)="removeImage(img)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </ion-button>
+                  <ion-img class="form-item-images" [src]="img"></ion-img>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col (ionBlur)="form.touched.images = true">
+              <ion-item class="form-item" *ngIf="currentProject.images.length < 4">
+                <ion-button class="form-item-images-btn-add" size='default' color="primary"
+                  (click)="imageLoader.click()">
+                  <ion-icon name="image-outline"></ion-icon>
+                  <ion-label class="form-item-label">
+                    {{'pages.images.add' | localize}}
+                  </ion-label>
+                </ion-button>
+                <input class="form-item-images-loader" type="file" #imageLoader (change)="uploadImage($event)">
+              </ion-item>
+              <ion-text *ngIf="form.touched.images && form.errors.images" color="danger" class="form-item-error">
+                {{form.errors.images | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.description' | localize}}
+                </ion-label>
+                <ion-textarea [autoGrow]="true" [maxlength]="form.maxLength.description" class="form-item-input"
+                  [(ngModel)]="currentProject.description" (ionBlur)="form.touched.description = true"></ion-textarea>
+              </ion-item>
+              <ion-text *ngIf="form.touched.description && form.errors.description" color="danger"
+                class="form-item-error">
+                {{form.errors.description | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.abstract' | localize}}
+                </ion-label>
+                <ion-textarea [autoGrow]="true" [maxlength]="form.maxLength.abstract" class="form-item-input"
+                  [(ngModel)]="currentProject.abstract" (ionBlur)="form.touched.abstract = true"></ion-textarea>
+              </ion-item>
+              <ion-text *ngIf="form.touched.abstract && form.errors.abstract" color="danger" class="form-item-error">
+                {{form.errors.abstract | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.impactStatement' | localize}}
+                </ion-label>
+                <ion-textarea [autoGrow]="true" [maxlength]="form.maxLength.impactStatement" class="form-item-input"
+                  [(ngModel)]="currentProject.impactStatement" (ionBlur)="form.touched.impactStatement = true">
+                </ion-textarea>
+              </ion-item>
+              <ion-text *ngIf="form.touched.impactStatement && form.errors.impactStatement" color="danger"
+                class="form-item-error">
+                {{form.errors.impactStatement | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.project.sdg' | localize}}
+                </ion-label>
+                <ion-select [interfaceOptions]="{cssClass: 'sdg-selector'}" class="form-item-input" [(ngModel)]="currentProject.sdg" (ionBlur)="form.touched.sdg = true"
+                  [multiple]="true" maxlength="3">
+                  <ion-select-option *ngFor="let sdg of sdgArray;" [value]="sdgEnum[sdg]">
+                    {{ 'sdg.' + sdgEnum[sdg] |localize}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-text *ngIf="form.touched.sdg && form.errors.sdg" color="danger" class="form-item-error">
+                {{form.errors.sdg | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="stacked">
+                  {{'pages.project.openDate' | localize}}
+                </ion-label>
+                <ion-datetime presentation="date" class="form-item-input" [(ngModel)]="currentProject.openDate"
+                  (ionBlur)="form.touched.openDate = true" [min]="today"></ion-datetime>
+              </ion-item>
+              <ion-text *ngIf="form.touched.openDate && form.errors.openDate" color="danger" class="form-item-error">
+                {{form.errors.openDate | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="currentProject.openDate">
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="stacked">
+                  {{'pages.project.closeDate' | localize}}
+                </ion-label>
+                <ion-datetime presentation="date" class="form-item-input" [(ngModel)]="currentProject.closeDate"
+                  (ionBlur)="form.touched.closeDate = true" [min]="getNextDay(currentProject.openDate)"></ion-datetime>
+              </ion-item>
+              <ion-text *ngIf="form.touched.closeDate && form.errors.closeDate" color="danger" class="form-item-error">
+                {{form.errors.closeDate | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label">
+                  {{'pages.project.isSponsored' | localize}}
+                </ion-label>
+                <ion-checkbox slot="start" class="form-item-input" [(ngModel)]="currentProject.isSponsored"
+                  (ionBlur)="form.touched.isSponsored = true"></ion-checkbox>
+              </ion-item>
+              <ion-text *ngIf="form.touched.isSponsored && form.errors.isSponsored" color="danger"
+                class="form-item-error">
+                {{form.errors.isSponsored | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="onSubmit()" class="form-item-submit">
+                {{ (isNew ?'pages.project.submit.new':'pages.project.submit.edit') | localize }}</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

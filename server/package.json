@@ -1,0 +1,39 @@
+{
+  "name": "hear-me-now-server",
+  "description": "Hear Me Now Server application with node and express.js.",
+  "version": "1.0.1",
+  "author": "cyrus2281 jay-rivard CookhyeongLee",
+  "homepage": "https://github.com/algonquin-college-sat/cst8334-jamac/app#readme",
+  "website": "https://montessori-mun.org/",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "prod": "node server.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algonquin-college-sat/cst8334-jamac.git"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^6.2.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "hear-me-now": "file:..",
+    "helmet": "^5.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.8",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.7",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "streamifier": "^0.1.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

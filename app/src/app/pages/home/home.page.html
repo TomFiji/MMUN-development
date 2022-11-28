@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="home-header">
+      <ion-avatar>
+        <img
+          src="assets/logo/hmn_logo.png">
+      </ion-avatar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home">
+    <div class="home-section">
+      <header class="home-section-header">
+        <h2>{{'pages.home.about.title' | localize}}</h2>
+      </header>
+      <div class="home-content">
+        {{'pages.home.about.content' | localize}}
+      </div>
+    </div>
+    <div class="home-section">
+      <header class="home-section-header">
+        <h2>{{'pages.home.sdg.title' | localize}}</h2>
+      </header>
+      <div class="home-content">
+        {{'pages.home.sdg.content' | localize}}
+        <div class="home-content-list">
+          <div class="sdg-card" *ngFor="let sdg of sdgArray;let i=index;">
+            <div class='sdg-card-icon'>
+              <hmn-sdg [sdgNumber]="i+1"></hmn-sdg>
+            </div>
+            <p>
+              {{ 'pages.home.sdg.' + sdgEnum[sdg] |localize}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-section">
+      <header class="home-section-header">
+        <h2>{{'pages.home.project.title' | localize}}</h2>
+      </header>
+      <div class="home-content">
+        {{'pages.home.project.content' | localize}}
+        <div class="home-content-links">
+          <ion-button color="primary" shape="round" class="home-content-links-discover" routerLink="/discover">
+            <span class="home-content-links-discover-span">{{'pages.home.project.link.discover' | localize}}</span>
+          </ion-button>
+          <ion-button color="light" class="home-content-links-create" routerLink="/project">
+            {{'pages.home.project.link.create' | localize}}</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

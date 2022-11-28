@@ -1,0 +1,195 @@
+$transition: 800ms ease;
+
+ion-content .container{
+  position:relative;
+}
+
+.overlay{
+  opacity: 0.85!important;
+  transition: $transition;
+}
+
+p, h2, h3, h4{
+  mix-blend-mode: difference;
+  filter: drop-shadow(0.07em 0.07em var(--hmn-color-dark-grey));
+  line-height: 2;
+}
+
+p{
+  font-size: larger;
+}
+
+
+.project-vote{
+  &-background{
+    height: 100%;
+    width: auto;
+    position: relative;
+    z-index: 1;
+    background: black;
+    transition: $transition;
+  }
+
+  &-description-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80px;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+    text-align: center;
+
+    @media (max-height: 667px){
+      &{
+        top: 20px;
+      }
+    }
+  }
+
+  &-description{
+    margin: 0 50px;
+    @media(max-height: 444px){
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-back-btn-container{
+    position: absolute;
+    z-index: 3;
+    top: 25px;
+    left: 25px;
+  }
+
+  &-item{
+    &-btn{
+      width: 85px;
+      height: 85px;
+      --border-radius: 50%;
+      --background: var(--hmn-color-secondary);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 15px 15px 0 15px;
+
+      --background-activated: var(--hmn-color-primary);
+      --background-focused: var(--hmn-color-primary);
+      --background-hover: var(--hmn-color-primary);
+      @media (min-width: 600px){
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    &-back-btn{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--hmn-color-tertiary);
+      vertical-align: middle;
+      opacity: .6;
+      color: black;
+      float: left;
+      @media (max-width: 389px) {
+        max-width: 40px;
+        max-height: 40px;
+      }
+
+      & ion-icon{
+        font-size: 32px;
+        @media(max-width: 389px){
+          font-size: 16px;
+        }
+      }
+    }
+
+    &-vote{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-bottom: 30px;
+      @media(max-height: 444px){
+        position: relative;
+      }
+
+      &-actions{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &-vote-btn{
+      bottom: 0;
+      margin-top: 10px;
+    }
+
+    &-img{
+      height: 100%!important;
+      width: 100%!important;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    &-titles{
+      color: var(--hmn-color-tertiary);
+      & h2{
+        font-weight: 800;
+      }
+      & h3{
+        font-weight: 600;
+      }
+      & p{
+        font-weight: 300;
+      }
+    }
+  }
+
+  /*Vote options */
+  &-options-container{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    opacity: 0;
+    display: none;
+    transition: $transition;
+
+    & ion-button{
+      font-weight: 400;
+      --background: var(--hmn-color-primary);
+      --background-hover: var(--hmn-color-tertiary);
+    }
+  }
+
+  &-options-container-show{
+    opacity: 1;
+    transition: $transition;
+    display: block;
+  }
+
+  &-options-bend{
+    transform: translate(0px, 25px);
+
+    @media (max-width: 375px) {
+      transform: translate(0px, 0px);
+    }
+    @media (max-width: 725px) and (max-height: 444px){
+      transform: translate(0px,0px);
+    }
+  }
+}
+
+.read-more{
+  color: var(--hmn-color-text-primary);
+  font-weight: 400;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.show{
+  visibility: visible;
+}

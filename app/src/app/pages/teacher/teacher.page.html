@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'Teacher Access' | localize }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="teacher">
+    <details class="teacher-section">
+      <summary class="teacher-section-summary">{{'Your Classroom Participants' | localize }}</summary>
+      <div class="teacher-section-body">
+        <hmn-infinite-list [name]="sections.USERS" (loadData)="loadData($event)">
+          <div class="teacher-section-body-list">
+            <hmn-detailed-card class="teacher-section-body-card" *ngFor="let user of users" [title]="user.title"
+              [id]="user.id" [href]="user.href" [imgUrl]="user.imgUrl" [details]="user.details"
+              [options]="user.options">
+            </hmn-detailed-card>
+          </div>
+        </hmn-infinite-list>
+      </div>
+    </details>
+    <details class="teacher-section">
+      <summary class="teacher-section-summary">{{'Your Classroom Projects' | localize }}</summary>
+      <div class="teacher-section-body" (reload)="reload()">
+        <hmn-infinite-list *ngIf="projects.length > 0; else emptyProject" [name]="sections.PROJECTS" (loadData)="loadData($event)">
+          <div class="teacher-section-body-list">
+            <hmn-detailed-card class="teacher-section-body-card" *ngFor="let project of projects" [title]="project.title"
+              [id]="project.id" [href]="project.href" [imgUrl]="project.imgUrl" [details]="project.details"
+              [options]="project.options">
+            </hmn-detailed-card>
+          </div>
+        </hmn-infinite-list>
+        <ng-template #emptyProject>
+          <div class="teacher-section-body-empty">
+            <hmn-empty-list label="core.noInitiatives"></hmn-empty-list>
+          </div>
+        </ng-template>
+      </div>
+    </details>
+  </ion-card>
+</ion-content>

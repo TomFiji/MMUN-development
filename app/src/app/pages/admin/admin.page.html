@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'pages.admin.header' | localize }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="admin">
+    <details class="admin-section">
+      <summary class="admin-section-summary">{{'pages.admin.titles.reports' | localize }}</summary>
+      <div class="admin-section-body">
+        <hmn-infinite-list *ngIf="reports.length > 0; else empty" [name]="sections.REPORTS"
+          (loadData)="loadData($event)">
+          <div class="admin-section-body-list">
+            <hmn-detailed-card class="admin-section-body-card" *ngFor="let report of reports" [title]="report.title"
+              [id]="report.id" [href]="report.href" [imgUrl]="report.imgUrl" [details]="report.details"
+              [options]="report.options">
+            </hmn-detailed-card>
+          </div>
+        </hmn-infinite-list>
+        <ng-template #empty>
+          <div class="admin-section-body-empty">
+            <hmn-empty-list label="core.noInitiatives"></hmn-empty-list>
+          </div>
+        </ng-template>
+      </div>
+    </details>
+    <details class="admin-section">
+      <summary class="admin-section-summary">{{'pages.admin.titles.users' | localize }}</summary>
+      <div class="admin-section-body">
+        <hmn-infinite-list [name]="sections.USERS" (loadData)="loadData($event)">
+          <div class="admin-section-body-list">
+            <hmn-detailed-card class="admin-section-body-card" *ngFor="let user of users" [title]="user.title"
+              [id]="user.id" [href]="user.href" [imgUrl]="user.imgUrl" [details]="user.details"
+              [options]="user.options">
+            </hmn-detailed-card>
+          </div>
+        </hmn-infinite-list>
+      </div>
+    </details>
+    <details class="admin-section">
+      <summary class="admin-section-summary">{{'pages.admin.titles.projects' | localize }}</summary>
+      <div class="admin-section-body">
+        <hmn-infinite-list *ngIf="projects.length > 0; else emptyProject" [name]="sections.PROJECTS" (loadData)="loadData($event)">
+          <div class="admin-section-body-list">
+            <hmn-detailed-card class="admin-section-body-card" *ngFor="let project of projects" [title]="project.title"
+              [id]="project.id" [href]="project.href" [imgUrl]="project.imgUrl" [details]="project.details"
+              [options]="project.options">
+            </hmn-detailed-card>
+          </div>
+        </hmn-infinite-list>
+        <ng-template #emptyProject>
+          <div class="admin-section-body-empty">
+            <hmn-empty-list label="core.noInitiatives"></hmn-empty-list>
+          </div>
+        </ng-template>
+      </div>
+    </details>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <ion-icon class="icon" name="language-outline"></ion-icon>
+  <ion-select (ionChange)="onChange($event)" class="lang" mode="ios" interface="action-sheet"
+    [selectedText]="currentLanguage" [cancelText]="'core.cancel' | localize">
+    <ion-select-option *ngFor="let lang of localizationService.AVAILABLE_LANGUAGES" [value]="lang" class="brown-option">
+      {{ 'lang.'+lang | localize }}</ion-select-option>
+  </ion-select>
+</div>

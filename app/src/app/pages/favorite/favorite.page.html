@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="favorite-header">
+      <ion-avatar>
+        <img
+          src="assets/logo/hmn_logo.png">
+      </ion-avatar>
+      <ion-title>{{'pages.favorite.title' | localize}}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrapper">
+    <div class="tabs">
+      <ion-tab-bar class="tab-bar" slot="top">
+        <ion-tab-button (click)="onTabChanged(tabs.FAVORITE)">
+          <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === tabs.FAVORITE}">
+            {{ 'pages.favorite.favorite' | localize }}
+          </ion-card-title>
+        </ion-tab-button>
+        <ion-tab-button (click)="onTabChanged(tabs.FOR)">
+          <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === tabs.FOR}">
+            {{ 'core.vote.for' | localize }}
+          </ion-card-title>
+        </ion-tab-button>
+        <ion-tab-button (click)="onTabChanged(tabs.AGAINST)">
+          <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === tabs.AGAINST}">
+            {{ 'core.vote.against' | localize }}
+          </ion-card-title>
+        </ion-tab-button>
+        <ion-tab-button (click)="onTabChanged(tabs.ABSTAIN)">
+          <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === tabs.ABSTAIN}">
+            {{ 'core.vote.abstain' | localize }}
+          </ion-card-title>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </div>
+    <div class="list-wrapper">
+      <ion-list class="list" *ngIf="currentList?.length > 0; else emptyInitiative">
+        <hmn-small-card *ngFor="let project of currentList" [imageUrl]="project.images[0]" [title]="project.title"
+          [subtitle]="project.subtitle" [href]="'/project/'+project._id"></hmn-small-card>
+      </ion-list>
+      <ng-template #emptyInitiative>
+        <div class="empty-list">
+          <hmn-empty-list label="core.noInitiatives"></hmn-empty-list>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ion-content>

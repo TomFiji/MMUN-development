@@ -1,0 +1,112 @@
+//Styling for LargeCard component
+
+.lc {
+  height: 400px;
+  width: 250px;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.lc-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 50px;
+}
+
+.lc-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lc-info {
+  background: white;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  border-radius: 22px;
+}
+
+.lc-info.container {
+  position: relative;
+}
+
+.lc-clip {
+  position: absolute;
+  background: black;
+  background: white;
+  border: none;
+  border-top-right-radius: 18px;
+  border-top-left-radius: 18px;
+  top: -15px;
+  right: 15px;
+}
+
+.lc-clip span {
+  font-size: x-small;
+  font-weight: 800;
+  color: black;
+  margin: 6px;
+}
+
+.lc-title {
+  color: black;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.lc-description {
+  margin: 10px;
+}
+
+.lc-description p {
+  text-align: center;
+  margin: 5px;
+}
+
+.lc-subtitle {
+  color: darkgray;
+}
+
+.lc-share {
+  background-color: black;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: large;
+  transition: all 0.25s linear;
+  opacity: 0;
+  visibility: hidden;
+  bottom: -20px;
+  right: -10px;
+}
+
+.lc:hover .lc-share {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lc-buttons {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  top: 5%;
+  right: 5%;
+  transition: all 350ms ease;
+  z-index: 10;
+  display: flex;
+  flex-direction: column-reverse;
+  transform: translateX(50px);
+}
+
+.lc:hover .lc-buttons {
+  opacity: 1;
+  display: flex;
+  transform: translateX(0px);
+}

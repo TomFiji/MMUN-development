@@ -1,0 +1,50 @@
+.el-container{
+  margin: 5px;
+  width: 100%;
+  height: auto;
+}
+.el-content{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.el-img-container{
+  width: 100%;
+  height: auto;
+}
+
+.el-label-container{
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+
+.el-label-container p{
+  margin: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.el-label{
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  @media (min-width: 860px) {
+    & {
+      font-size: 22px;
+    }
+  }
+}
+
+.el-action-label{
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--hmn-color-background);
+}
+
+.el-action-label :hover{
+  color: var(--hmn-color-secondary);
+}

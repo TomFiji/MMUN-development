@@ -1,0 +1,64 @@
+<ion-content>
+  <div class="profile-header">
+    <div class="profile-name">
+      <h2>{{userData.firstName +' '+ userData.lastName}}</h2>
+    </div>
+    <div class="profile-buttons">
+      <ion-button *ngIf="isAdmin" routerLink="/admin" color="light">{{'pages.profile.button.admin' | localize}}</ion-button>
+      <ion-button *ngIf="isTeacher" routerLink="/teacher" color="light">{{'Your Classroom' | localize}}</ion-button>
+      <div class="profile-buttons-group">
+        <ion-button (click)="onLogout()">{{'pages.profile.button.logout' | localize}}</ion-button>
+        <hmn-localization-button></hmn-localization-button>
+      </div>
+    </div>
+    <div class="profile-container">
+      <div class="profile-img-border-red">
+        <div class="profile-img-border-white" (click)="imageLoader.click()">
+          <div class="profile-img-container">
+            <ion-img [src]="profilePictureURL"></ion-img>
+          </div>
+          <div class="profile-img-container-icon">
+            <p>{{'pages.profile.button.changePhoto' | localize}}</p>
+          </div>
+        </div>
+      </div>
+      <input class="profile-edit-item-image-loader" type="file" #imageLoader (change)="uploadImage($event)" />
+      <div class="profile-buttons-container">
+        <ion-button routerLink="/profileEdit">{{'pages.profile.button.editProfile' | localize}}</ion-button>
+        <ion-button routerLink="/updateEmail">{{'pages.profile.button.changeEmail' | localize}}</ion-button>
+        <ion-button routerLink="/changePassword">{{'pages.profile.button.changePassword' | localize}}</ion-button>
+      </div>
+      <div class="profile-project-container" *ngIf="userProjects?.length > 0; else placeholder">
+        <div class="profile-project-lc">
+          <hmn-large-card class="hmn-large-card" [title]="userProjects[0].title" [imageUrl]="userProjects[0].images[0]"
+            [subtitle]="userProjects[0].subtitle" [href]="'/project/'+userProjects[0]._id"
+            [votes]="userProjects[0].votes?.for" [editable]="true" (onEdit)="onEditProject(userProjects[0]._id)"
+            (onDelete)="onDeleteProject(userProjects[0]._id, userProjects[0].title)">
+          </hmn-large-card>
+        </div>
+        <div class="profile-project-sc-container">
+          <div id="profile-project-sc" class="profile-project-sc">
+            <ion-list class="profile-project-sc-list">
+              <div class="profile-project-sc-card" *ngFor="let project of userProjects.slice(1)">
+                <hmn-small-card [imageUrl]="project.images[0]" [title]="project.title" [subtitle]="project.subtitle"
+                  [href]="'/project/'+project._id" [editable]="true" (onEdit)="onEditProject(project._id)"
+                  (onDelete)="onDeleteProject(project._id, project.title)"></hmn-small-card>
+              </div>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+      <div class="profile-new">
+        <ion-button color="success" class="ion-text-wrap profile-new-button" routerLink="/project">{{ 'core.newInitiative' | localize }}</ion-button>
+      </div>
+    </div>
+  </div>
+  <ng-template #placeholder>
+    <div id="emptyList" class="profile-project-container">
+      <div class="profile-project-empty">
+        <hmn-empty-list label="core.noInitiatives" actionLabel="core.newInitiative" actionLink="/project">
+        </hmn-empty-list>
+      </div>
+    </div>
+  </ng-template>
+</ion-content>

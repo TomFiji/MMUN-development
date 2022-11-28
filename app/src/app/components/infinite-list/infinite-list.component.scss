@@ -1,0 +1,23 @@
+.content {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+ion-content main {
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    border-radius: 2.5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ececec;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #acacac;
+  }
+}

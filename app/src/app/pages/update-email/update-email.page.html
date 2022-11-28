@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button shape="round" (click)="onBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{'pages.updateEmail.title'|localize}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'pages.updateEmail.email' | localize}}
+                </ion-label>
+                <ion-input
+                  class="form-item-input"
+                  type="email"
+                  [(ngModel)]="form.values.newEmail"
+                  (ionBlur)="form.touched.newEmail = true"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                *ngIf="form.touched.newEmail && form.errors.newEmail"
+                color="danger"
+                class="form-item-error"
+              >
+                {{form.errors.newEmail | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                (click)="onUpdate()"
+                class="form-item-update"
+                [disabled]="!form.isValid"
+              >
+                {{'pages.updateEmail.button.updateEmail' | localize
+                }}</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

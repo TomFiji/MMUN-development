@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header">
+      <ion-title>{{'pages.confirmEmail.title'|localize}}</ion-title>
+      <ion-button *ngIf="userDaoService.isLoggedIn" (click)="onLogout()">
+        {{'pages.confirmEmail.button.logout' | localize
+        }}</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+          <ion-row *ngIf="email">
+            <ion-col>
+              <ion-text color="primary">
+                <h3>{{'pages.confirmEmail.header' | localize:{key: 'email', value:email} }}</h3>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.emailToken' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="number" [(ngModel)]="form.values.emailToken"
+                  (ionBlur)="form.touched.emailToken = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.emailToken && form.errors.emailToken" color="danger"
+                class="form-item-error">
+                {{form.errors.emailToken | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="onResend()" color="light" class="form-item-update">
+                {{'pages.confirmEmail.button.resend' | localize
+                }}</ion-button>
+              <ion-button (click)="onConfirm()" class="form-item-update" [disabled]="!form.isValid">
+                {{'pages.confirmEmail.button.confirm' | localize
+                }}</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

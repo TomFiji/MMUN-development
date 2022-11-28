@@ -1,0 +1,23 @@
+<a [routerLink]="href" class="sc">
+  <div class="sc-container">
+    <div class="sc-buttons" *ngIf="editable" (click)="$event.preventDefault()">
+      <ion-button class="sc-button" shape="round" slot="icon-only" color="danger" (click)="onDeleteClick($event)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="sc-button" shape="round" slot="icon-only" color="light" (click)="onEditClick($event)">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-card>
+      <img class="sc-img" [src]="imageUrl" />
+      <ion-label>
+        <h2>
+          <ion-text>{{ title | localize }}</ion-text>
+        </h2>
+        <p>
+          <ion-text>{{ subtitle | localize }}</ion-text>
+        </p>
+      </ion-label>
+    </ion-card>
+  </div>
+</a>

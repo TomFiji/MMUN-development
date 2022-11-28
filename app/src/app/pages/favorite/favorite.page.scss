@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.tabs {
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
+.tab-bar-title {
+    @media (max-width: 580px) {
+      & {
+        font-size: medium;
+      }
+    }
+}
+
+.list-wrapper {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.active {
+  color: var(--ion-color-primary);
+  font-weight: bold;
+}
+
+.empty-list {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.favorite-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & >ion-avatar{
+    width: auto;
+    --border-radius: auto;
+  }
+
+  @media (max-width: 345px){
+    & ion-title{
+      display: none;
+    }
+  }
+}

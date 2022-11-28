@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="discover-header">
+      <ion-avatar>
+        <img
+          src="assets/logo/hmn_logo.png">
+      </ion-avatar>
+      <ion-buttons slot="end">
+        <hmn-search-bar (onSearch)="onSearch($event)"></hmn-search-bar>
+      </ion-buttons>
+    </div>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- User Initiatives -->
+  <div class='init-wrapper'>
+    <div class="init-header">
+      <h2 class="init-header-title">
+        {{'pages.discover.init.title' | localize}}
+      </h2>
+    </div>
+    <div class="init-content">
+      <ng-container *ngIf="userProjects?.length > 0; else emptyInitiatives">
+        <hmn-small-card *ngFor="let project of userProjects" [imageUrl]="project.images[0]" [title]="project.title"
+          [subtitle]="project.subtitle" [href]="'/project/'+project._id">
+        </hmn-small-card>
+      </ng-container>
+      <ng-template #emptyInitiatives>
+        <div class="init-content-empty">
+          <hmn-empty-list label="core.noInitiatives" actionLabel="core.newInitiative" actionLink="/project">
+          </hmn-empty-list>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <!-- SDG Discover -->
+  <main class="sdg-wrapper">
+    <div class="sdgs">
+      <ng-container *ngFor="let sdg of SDGs">
+        <div class="sdg" *ngIf="projects[sdg]?.length > 0">
+          <header class="sdg-header">
+            <h2 class="sdg-header-title">
+              {{'sdg.'+sdg | localize}}
+            </h2>
+          </header>
+          <div class="sdg-content">
+            <hmn-infinite-list [name]="sdg" (loadData)="loadData($event)">
+              <div class="sdg-content-list">
+                <hmn-large-card *ngFor="let project of projects[sdg]" [imageUrl]="project.images[0]"
+                  [title]="project.title" [subtitle]="project.subtitle" [href]="'/project/'+project._id"
+                  [votes]="project.votes?.for">
+                </hmn-large-card>
+              </div>
+            </hmn-infinite-list>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </main>
+</ion-content>

@@ -1,0 +1,14 @@
+<div class="el-container">
+  <div class="el-content">
+    <div class="el-img-container">
+      <img [src]="emptyListImg">
+    </div>
+    <div class="el-label-container">
+      <p class="el-label">{{ label | localize }}</p>
+      <p Class="el-action-label" *ngIf="actionLabel"><a [href]="actionLink">{{actionLabel | localize}}</a></p>
+    </div>
+  </div>
+</div>
+
+
+

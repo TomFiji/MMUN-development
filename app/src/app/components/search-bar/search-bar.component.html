@@ -1,0 +1,72 @@
+<div class="search" [class.backDrop]="expanded" (click)="openModal()">
+  <div class="search-icon">
+    <ion-icon name="search-circle-sharp"></ion-icon>
+  </div>
+  <div class="search-query" *ngIf="expanded">
+    <ion-text>{{ stringQuery }}</ion-text>
+  </div>
+</div>
+
+<ion-modal #modal trigger="open-modal" [isOpen]="isModalOpen" (willDismiss)="closeModal()">
+  <ng-template>
+    <ion-content>
+      <ion-toolbar>
+        <ion-title>{{'pages.search.search' | localize }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="light" class="modal-btn" (click)="clearSearch()">{{'core.clear' | localize }}</ion-button>
+          <ion-button color="light" class="modal-btn" (click)="closeModal()">{{'core.close' | localize }}</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+        <ion-row>
+          <ion-col>
+            <ion-item class="form-item">
+              <ion-label class="form-item-label" position="floating">
+                {{'pages.search.text' | localize}}
+              </ion-label>
+              <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.text"
+                (ionBlur)="form.touched.text = true"></ion-input>
+            </ion-item>
+            <ion-text *ngIf="form.touched.text && form.errors.text" color="danger" class="form-item-error">
+              {{form.errors.text | localize}}
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item class="form-item">
+              <ion-label class="form-item-label" position="floating">
+                {{'pages.search.country' | localize}}
+              </ion-label>
+              <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.country"
+                (ionBlur)="form.touched.country = true"></ion-input>
+            </ion-item>
+            <ion-text *ngIf="form.touched.country && form.errors.country" color="danger" class="form-item-error">
+              {{form.errors.country | localize}}
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item class="form-item">
+              <ion-label class="form-item-label" position="floating">
+                {{'pages.search.sdg' | localize}}
+              </ion-label>
+              <ion-select [interfaceOptions]="{cssClass: 'sdg-selector'}" class="form-item-input" [(ngModel)]="form.values.sdg">
+                <ion-select-option *ngFor="let sdg of sdgArray;" [value]="sdgEnum[sdg]">
+                  {{ 'sdg.' + sdgEnum[sdg] |localize}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="onSearchHandler()" class="form-item-search">
+              {{'pages.search.search' | localize }}</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ng-template>
+</ion-modal>

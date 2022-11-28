@@ -1,0 +1,29 @@
+{
+  "name": "hear-me-now",
+  "description": "Montessori Model UN HEAR ME NOW application",
+  "scripts": {
+    "setup": "npm i && npm i --prefix server && npm i --prefix app",
+    "app": "npm start --prefix app",
+    "server": "npm start --prefix server",
+    "dev": "concurrently --kill-others \"npm run app\" \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algonquin-college-sat/cst8334-jamac.git"
+  },
+  "author": "cyrus2281 wall0419 jay-rivard CookhyeongLee",
+  "bugs": {
+    "url": "https://github.com/algonquin-college-sat/cst8334-jamac/issues"
+  },
+  "homepage": "https://github.com/algonquin-college-sat/cst8334-jamac#readme",
+  "website": "https://montessori-mun.org/",
+  "devDependencies": {
+    "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongo": "^0.1.0",
+    "ngx-cookie": "^6.0.0",
+    "ngx-cookie-service": "^14.0.0"
+  }
+}

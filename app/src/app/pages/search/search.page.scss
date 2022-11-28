@@ -1,0 +1,42 @@
+.search {
+  &-body {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+  }
+  &-content {
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    &-small-card:hover {
+      ::ng-deep {
+        .sc-container {
+          & ion-card {
+            background-color: var(--hmn-color-tertiary);
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-content-card {
+  ::ng-deep {
+    .sc-container {
+      margin: auto;
+    }
+  }
+}
+
+.empty-list {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+}

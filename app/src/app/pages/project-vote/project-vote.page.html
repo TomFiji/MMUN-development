@@ -1,0 +1,34 @@
+
+
+<ion-content *ngIf="currentProject" (click)="onOverlay()">
+  <ion-slides [ngClass]="showVoteOptions? 'overlay': ''" #ionSlides class="project-vote-background" [options]="sliderOpts">
+    <ion-slide *ngFor="let item of currentProject.images; let i = index">
+      <img class="project-vote-item-img" src="{{item}}" width="400px" height="250px">
+    </ion-slide>
+  </ion-slides>
+  <div class="project-vote-back-btn-container">
+    <button (click)="onBack()" class="project-vote-item-back-btn" ion-button><ion-icon name="chevron-back-outline"></ion-icon></button>
+  </div>
+
+  <div class="project-vote-description-container">
+    <div class="project-vote-description">
+      <div class="project-vote-item-titles">
+        <h2>{{currentProject.title}}</h2>
+        <h4>{{currentProject.subtitle}}</h4>
+        <h4>{{'pages.projectVote.closeDate' | localize}} {{closeDate}}</h4>
+        <p>{{currentProject.abstract}}</p>
+      </div>
+
+      <div class="project-vote-item-vote">
+        <div class="project-vote-options-container" [ngClass]="showVoteOptions? 'project-vote-options-container-show' : ''">
+          <ion-button (click)="onVote($event, vote.ABSTAIN)" class="project-vote-item-btn project-vote-options-bend">{{'core.vote.abstain' | localize}}</ion-button>
+          <ion-button (click)="onVote($event, vote.FOR)" class="project-vote-item-btn">{{'core.vote.for' | localize}}</ion-button>
+          <ion-button (click)="onVote($event, vote.AGAINST)" class="project-vote-item-btn project-vote-options-bend">{{'core.vote.against' | localize}}</ion-button>
+        </div>
+        <div class="project-vote-item-vote-action">
+          <ion-button (click)="onShowVoteOptions($event)" class="project-vote-item-btn">{{'pages.projectVote.vote' | localize}}</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

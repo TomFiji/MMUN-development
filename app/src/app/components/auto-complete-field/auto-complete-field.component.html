@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <ion-input class="form-item-input" type="text" (ionBlur)="onBlurHandler($event)" (ionFocus)="onSearchHandler($event, true)"
+    (ionChange)="onSearchHandler($event)" [(ngModel)]="value" (ngModelChange)="onModelChange(value)"></ion-input>
+  <div class="list-wrapper" *ngIf="showList && list.length > 0">
+    <div class="list-item" *ngFor="let item of list" (click)="setItem(item)">
+      <ion-text>{{item}}</ion-text>
+    </div>
+  </div>
+</div>

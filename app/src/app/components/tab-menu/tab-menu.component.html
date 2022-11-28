@@ -1,0 +1,18 @@
+
+<ion-tabs #tabs (ionTabsWillChange)="setCurrentTab($event)" class="tm-tabs" tabHighlight="true">
+  <ion-tab-bar #tmTabs class="tm-tab-bar" slot="bottom">
+    <ion-tab-button #home [ngClass]="{'active': selectedTab === 'home'}" class="tm-tab-button" tab="home">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button #discover [ngClass]="{'active': selectedTab === 'discover'}" class="tm-tab-button" tab="discover">
+      <ion-icon name="compass-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button #profile [ngClass]="{'active': selectedTab === 'profile'}" class="tm-tab-button" tab="profile">
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button #favorite [ngClass]="{'active': selectedTab === 'favorite'}" class="tm-tab-button" tab="favorite">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+

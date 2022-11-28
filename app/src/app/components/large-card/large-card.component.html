@@ -1,0 +1,29 @@
+<div class="lc">
+  <div class="lc-buttons" *ngIf="editable">
+    <ion-button class="lc-button" shape="round" slot="icon-only" color="danger" (click)="onDelete.emit()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button class="lc-button" shape="round" slot="icon-only" color="light" (click)="onEdit.emit()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+  </div>
+  <a [routerLink]="href">
+    <ion-card class="lc-container">
+      <img [src]="imageUrl" />
+      <div class="lc-info">
+        <div class="lc-info-container">
+          <div class="lc-clip" *ngIf="!!votes">
+            <span>{{ votes | numberFormat }} {{ "core.votes" | localize }}</span>
+          </div>
+          <div class="lc-description">
+            <p class="lc-title">{{ title | localize }}</p>
+            <p class="lc-subtitle">{{ subtitle | localize }}</p>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </a>
+  <button *ngIf="shareable" class="lc-share" (click)="onShare($event)">
+    {{ "core.share" | localize }}
+  </button>
+</div>

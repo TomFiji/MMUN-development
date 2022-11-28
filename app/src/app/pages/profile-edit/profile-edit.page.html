@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button shape="round" (click)="onBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="page-title" slot="start">{{ 'pages.profileEdit.title' | localize }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item visible">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.group' | localize}}
+                </ion-label>
+                <hmn-group-field class="form-item-input" type="text" [(ngModel)]="userData.group"
+                (onBlur)="form.touched.group = true" (onSearch)="searchGroups()" [list]="loadedGroups"></hmn-group-field>
+            </ion-item>
+              <ion-text *ngIf="form.touched.group && form.errors.group" color="danger" class="form-item-error">
+                {{form.errors.group | localize}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.number' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="userData.phoneNumber"
+                  (ionBlur)="form.touched.phoneNumber = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.phoneNumber && form.errors.phoneNumber" color="danger" class="form-item-error">
+                {{form.errors.phoneNumber | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.country' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="userData.country"
+                  (ionBlur)="form.touched.country = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.country && form.errors.country" color="danger" class="form-item-error">
+                {{form.errors.country | localize}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.zipCode' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="userData.zipCode"
+                  (ionBlur)="form.touched.zipCode = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.zipCode && form.errors.zipCode" color="danger" class="form-item-error">
+                {{form.errors.zipCode | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="onSubmit()" class="form-item-submit">
+                {{'pages.profileEdit.button.save' | localize }}</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

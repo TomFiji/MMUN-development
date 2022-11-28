@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="page-title" slot="start"
+      >{{ 'pages.login.title' | localize }}</ion-title
+    >
+    <ion-buttons slot="end">
+      <hmn-localization-button></hmn-localization-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.email' | localize}}
+                </ion-label>
+                <ion-input
+                  class="form-item-input"
+                  type="email"
+                  [(ngModel)]="form.values.email"
+                  (ionBlur)="form.touched.email = true"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                *ngIf="form.touched.email && form.errors.email"
+                color="danger"
+                class="form-item-error"
+              >
+                {{form.errors.email | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.password' | localize}}
+                </ion-label>
+                <ion-input
+                  class="form-item-input"
+                  type="password"
+                  [(ngModel)]="form.values.password"
+                  (ionBlur)="form.touched.password = true"
+                ></ion-input>
+              </ion-item>
+              <ion-text
+                *ngIf="form.touched.password && form.errors.password"
+                color="danger"
+                class="form-item-error"
+              >
+                {{form.errors.password | localize}}
+              </ion-text>
+              <a routerLink="/forgotPassword" class="form-item-link"
+                >{{ 'pages.login.link.forgotPassword' |localize }}</a
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                (click)="onSubmit()"
+                class="form-item-submit"
+                [disabled]="!form.isValid"
+              >
+                {{'pages.login.button.login' | localize }}</ion-button
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <a routerLink="/signup" class="form-item-link"
+                >{{ 'pages.login.link.newAccount' |localize }}</a
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

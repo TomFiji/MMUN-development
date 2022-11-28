@@ -1,0 +1,335 @@
+//Header container above image
+.profile-header {
+  background-color: var(--hmn-color-primary);
+  height: 125px;
+  padding-top: 1px;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.profile-name {
+  text-transform: capitalize;
+}
+
+.profile-header h2 {
+  color: var(--hmn-color-focus);
+  font-weight: bold;
+  margin: 15px 0 0 15px;
+  width: 100%;
+  min-width: 1px;
+  @media (max-width: 350px) {
+    font-size: 18px;
+    margin: 10px 10px;
+  }
+}
+
+.profile-buttons {
+  display: flex;
+  background-color: var(--hmn-color-primary);
+  margin: 15px 15px 0 0;
+  @media (max-width: 350px) {
+    margin: 2px 5px;
+  }
+}
+
+.profile-buttons ion-button {
+  --background: var(--hmn-color-secondary);
+  --background-activated: var(--hmn-color-primary);
+  width: 100%;
+}
+
+//Start of profile image container
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.profile-buttons-container ion-button {
+  white-space: break-spaces;
+}
+
+@media (min-width: 700px) {
+  .profile-buttons-container ion-button {
+    width: 160px !important;
+  }
+
+  ion-button {
+    width: 150px;
+  }
+
+  .profile-header h2 {
+    margin: 25px 0 0 25px;
+  }
+}
+
+.profile-img-border-red {
+  border: 5px solid var(--hmn-color-secondary);
+  border-radius: 50%;
+  width: fit-content;
+}
+
+.profile-img-border-white {
+  border: 4px solid var(--hmn-color-tertiary);
+  border-radius: 50%;
+  width: fit-content;
+}
+
+.profile-img-container {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  & ion-img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+}
+
+//Profile buttons
+.profile-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 5px 10px;
+
+  @media (max-width: 350px) {
+    flex-wrap: wrap;
+  }
+}
+
+ion-button {
+  --background: var(--hmn-color-primary);
+  --background-activated: var(--hmn-color-secondary);
+  // // --background-focused: var(--hmn-color-secondary);
+  // --background-hover: var(--hmn-color-secondary);
+  --color: var(--hmn-color-tertiary);
+  --border-radius: 25px;
+  width: 145px;
+  font-size: x-small;
+  @media (min-width: 860px) {
+    font-size: small;
+  }
+}
+
+//Projects container
+.profile-project-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+}
+
+.profile-project-empty {
+  width: 70%;
+  max-width: 400px;
+  height: 400px;
+  position: relative;
+}
+
+.profile-project-lc {
+  height: auto;
+  width: 45%;
+  margin-bottom: 15px;
+  @media (max-height: 730px) {
+    margin-top: 15px;
+  }
+}
+
+.profile-project-sc {
+  margin-bottom: 15px;
+}
+
+.profile-project-sc-container {
+  height: auto;
+  width: 45%;
+  align-self: center;
+  bottom: 10px;
+  margin-top: 15px;
+}
+
+.profile-project-sc-card {
+  margin-bottom: 15px;
+  @media (max-width: 645px){
+    width: 225px;
+  }
+  @media (max-width: 565px){
+    width: 200px;
+  }
+  @media (max-width: 510px){
+    width: 190px;
+  }
+  @media (max-width: 495px){
+    width: 175px;
+  }
+  @media (max-width: 450px){
+    width: 155px;
+  }
+  @media (max-width: 450px){
+    width: 145px;
+  }
+  @media (max-width: 360px){
+    width: 128px;
+  }
+}
+
+.profile-project-sc-list {
+  overflow: auto;
+  max-height: 380px;
+  &::-webkit-scrollbar {
+    height: 3px;
+    width: 3px;
+    border-radius: 2px;
+    @media (min-width: 860px) {
+      & {
+        height: 5px;
+        width: 5px;
+      }
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: #ececec;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #acacac;
+  }
+
+  @media (min-width: 580px) {
+    max-height: 450px;
+  }
+  @media (min-width: 860px) {
+    max-height: 530px;
+  }
+}
+
+//Overriding small card and lc styling
+.profile-project-container {
+  min-height: 320px;
+  @media (min-width: 580px) {
+    min-height: 400px;
+  }
+  @media (min-width: 860px) {
+    min-height: 500px;
+  }
+
+  ::ng-deep {
+    .lc-container {
+      margin-inline: 0;
+      margin: 0 !important;
+    }
+    .lc {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      max-width: 250px;
+      float: right;
+    }
+
+    .sc-container {
+      width: 100%;
+      max-width: 260px;
+      @media (max-width: 480px) {
+        height: 100%;
+      }
+
+      ion-label h2 {
+        font-size: 12px;
+      }
+    }
+
+    .lc-title {
+      line-height: 1;
+    }
+
+    .lc-subtitle {
+      line-height: 15px !important;
+    }
+
+    .sc-container ion-card {
+      margin: 0 16px;
+    }
+  }
+}
+
+.profile-edit {
+  &-item {
+    &-image-loader {
+      display: none;
+    }
+  }
+}
+
+.profile-img {
+  &-container {
+    position: relative;
+    cursor: pointer;
+    background-color: var(--hmn-color-tertiary);
+    z-index: 1;
+
+    & ion-img {
+      transition: all 350ms ease;
+    }
+
+    &-icon {
+      display: none;
+      position: absolute;
+      text-align: center;
+      cursor: pointer;
+      transform: translate(0px, -100px);
+      color: var(--hmn-color-tertiary);
+      z-index: 10;
+      width: 150px;
+      height: 150px;
+      max-width: 150px;
+
+      & p {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: small;
+      }
+    }
+  }
+}
+
+.profile-img-border-red:hover {
+  background: var(--hmn-color-black);
+  .profile-img-container-icon {
+    display: block;
+  }
+}
+
+.profile-img-border-white:hover {
+  .profile-img-container {
+    opacity: 0.6;
+  }
+}
+
+.profile-new {
+  width: 100%;
+  max-width: min(400px, 70%);
+  margin: 0 auto;
+  padding-bottom: 10px;
+
+  &-button {
+    width: 100%;
+    font-size: large;
+    @media (max-width: 555px){
+      font-size: small;
+    }
+  }
+}

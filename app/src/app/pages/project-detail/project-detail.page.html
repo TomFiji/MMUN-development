@@ -1,0 +1,115 @@
+
+<ion-content *ngIf="project">
+  <div [ngClass]="moreOptions ? 'blur-filter' : 'pd-container'"  class="pd-container">
+    <div class="pd-img-container">
+      <img [src]="project.images[0]" class="main-image" id="preview">
+      <div class="pd-over-img">
+        <div class="pd-option-container">
+          <div class="pd-option-btns flex">
+            <button (click)="onBack()" class="pd-option-btn" ion-button><ion-icon name="chevron-back-outline"></ion-icon></button>
+            <div class="flex">
+              <div>
+                <button (click)="onFavorited()" class="pd-option-btn favorite" ion-button><ion-icon [ngClass]="favorited ? 'favorited': ''" id="favoriteIcon" [name]="heartType"></ion-icon></button>
+              </div>
+              <div class="pd-option-more">
+                <button class="pd-option-btn" (click)="onMoreOptions(true)">
+                  <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pd-title-wrapper flex">
+          <div class="pd-title-container">
+            <div class="pd-title-content flex-column" style="clear: both;">
+              <h2>{{project.title}}</h2>
+              <div>
+                <ion-icon class="location-icon" name="location"></ion-icon><span class="pd-subtitle">{{project.country}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="pd-img-prev">
+            <div *ngFor="let image of project.images; let i = index" [ngClass]="hideImage === i ? 'hide no-height' : 'show show-height'" class="prev-img" id="{{'prev-img' + i}}" class="pd-img-secondary">
+              <img [ngClass]="hideImage === i ? 'hide no-height' : 'show show-height'" class="prev-img" id="{{'prev-img' + i}}" [src]="image" (click)="onImgClick($event, i)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pd-mid-container">
+      <div class="flex">
+        <div class="pd-abstract-desc-container">
+          <div class="pd-abstract">
+            <h4>{{'pages.projectDetail.abstract' | localize }}</h4>
+            <p>{{project.abstract}}</p>
+          </div>
+          <div class="pd-desc-container">
+            <h4>{{'pages.projectDetail.aboutInitiative' | localize }}</h4>
+            <div class="pd-project-desc">
+              <p>{{(readMore) ? project.description : project.description | slice:0:290}} <span *ngIf="!readMore && project.description.length > 290">{{'pages.projectDetail.ellipsis' | localize }}</span>
+                <span *ngIf="project.description.length > 290">
+                  <a class="read-more" *ngIf="!readMore" (click)="readMore=true">{{'pages.projectDetail.readMore' | localize }}</a>
+                  <a class="read-more" *ngIf="readMore" (click)="readMore=false">{{'pages.projectDetail.readLess' | localize }}</a>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="pd-impact-container">
+            <h4>{{'pages.projectDetail.impact' | localize }}</h4>
+            <p>{{project.impactStatement}}</p>
+          </div>
+        </div>
+        <div class="pd-badges">
+          <div class="pd-badge" *ngFor="let item of project.sdg">
+            <hmn-sdg [sdgNumber]="item" [small]="true"></hmn-sdg>
+          </div>
+        </div>
+
+      </div>
+      <div>
+
+        <div class="pd-btm-container flex">
+          <div class="pd-voted-container">
+            <h4>{{'pages.projectDetail.alreadyVoted' | localize }}</h4>
+            <div class="pd-voted-content flex">
+              <span class="pd-voted-number">{{project.votes?.for | numberFormat}}</span>
+              <div class="pd-voted-youthvoices flex-column">
+                <p>{{'core.vote.for' | localize | uppercase }}</p>
+              </div>
+            </div>
+            <div class="pd-voted-content flex">
+              <span class="pd-voted-number">{{project.votes?.against | numberFormat}}</span>
+              <div class="pd-voted-youthvoices flex-column">
+                <p>{{'core.vote.against' | localize | uppercase }}</p>
+              </div>
+            </div>
+            <div class="pd-voted-content flex">
+              <span class="pd-voted-number">{{project.votes?.abstain| numberFormat}}</span>
+              <div class="pd-voted-youthvoices flex-column">
+                <p>{{'core.vote.abstain' | localize | uppercase }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="pd-vote-btn-container">
+            <ion-button *ngIf="isProjectOpen; else closed" [routerLink]="'/project/'+project._id+'/vote/'"><ion-icon size="large" name="chevron-forward-outline"></ion-icon></ion-button>
+            <ng-template #closed>
+              <ion-chip class="closed-chip" color="danger" outline="danger">
+                <ion-label>{{'core.closed' | localize }}</ion-label>
+              </ion-chip>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="moreOptions ? 'show' : 'hide'" class="pd-more-options-container" (clickOutside)="onMoreOptions(false)">
+    <div class="pd-more-options flex-column">
+      <button
+        (click)="onReport($event)" class="pd-more-options-report">{{'pages.projectDetail.report' | localize }}</button>
+      <span class="separator" aria-hidden="true" role="presentation"></span>
+      <button (click)="onShare($event)" class="pd-more-options-share">{{'pages.projectDetail.share' | localize }}</button>
+      <span class="separator" aria-hidden="true" role="presentation"></span>
+      <button (click)="onMoreOptions(false)" class="pd-more-options-cancel">{{'pages.projectDetail.cancel' | localize }}</button>
+    </div>
+  </div>
+</ion-content>

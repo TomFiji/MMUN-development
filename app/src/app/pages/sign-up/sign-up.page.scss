@@ -1,0 +1,132 @@
+.page-title {
+  font-size: large;
+
+  @media (max-width: 430px) {
+    & {
+      font-size: small;
+    }
+  }
+
+  @media (min-width: 860px) {
+    & {
+      font-size: inherit;
+    }
+  }
+}
+
+.tab-bar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  &-title {
+    @media (max-width: 430px) {
+      & {
+        font-size: large;
+      }
+    }
+  }
+}
+
+.card {
+  &-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &-header {
+    min-height: 50px;
+  }
+
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  height: max-content;
+}
+
+.active {
+  color: var(--ion-color-primary);
+  font-weight: bold;
+}
+
+.form-item {
+  margin-bottom: 10px;
+
+  &-label {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+  }
+
+  &-icon {
+    margin-right: 5px;
+  }
+
+  &-link {
+    display: block;
+    color: var(--link-color);
+    text-transform: capitalize;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--link-color-hover);
+    }
+  }
+
+  &-error {
+    &-password {
+      display: flex;
+      position: relative;
+      align-items: center;
+
+      &-icon {
+        font-size: larger;
+        margin-left: 5px;
+        & title {
+          display: none !important;
+          visibility: hidden;
+        }
+      }
+      ion-icon:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      &-popper {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 150ms 300ms ease-in-out;
+        background: whitesmoke;
+        padding: 5px;
+        top: 100%;
+        z-index: 100;
+        border: 1px solid black;
+        box-shadow: 0px 0px 15px 0px rgba(0 0 0 / 50%);
+        color: black;
+        white-space: nowrap;
+      }
+
+      &:hover &-popper {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &-submit {
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
+
+.visible {
+  overflow: visible;
+  z-index: 100;
+}

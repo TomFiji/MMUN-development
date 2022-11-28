@@ -1,0 +1,205 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="page-title" slot="start">{{ 'pages.signup.title' | localize }}</ion-title>
+    <ion-buttons slot="end">
+      <hmn-localization-button></hmn-localization-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-wrapper">
+    <ion-card class="card">
+      <ion-card-header class="card-header">
+        <ion-tabs>
+          <ion-tab-bar class="tab-bar" slot="top">
+            <ion-tab-button (click)="onTabChange(authorType.STUDENT)">
+              <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === authorType.STUDENT}">
+                {{ 'pages.signup.tab.student' | localize }}
+              </ion-card-title>
+            </ion-tab-button>
+            <ion-tab-button (click)="onTabChange(authorType.TEACHER)">
+              <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === authorType.TEACHER}">
+                {{ 'pages.signup.tab.teacher' | localize }}
+              </ion-card-title>
+            </ion-tab-button>
+            <ion-tab-button (click)="onTabChange(authorType.USER)">
+              <script>
+                document.getElementById("group").ariaDisabled = true;
+              </script>
+              <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === authorType.USER}">
+                {{ 'pages.signup.tab.user' | localize }}
+              </ion-card-title>
+            </ion-tab-button>
+            <ion-tab-button (click)="onTabChange(authorType.ORGANIZATION)">
+              <script>
+                document.getElementById("group").ariaDisabled = true;
+              </script>
+              <ion-card-title class="tab-bar-title" [ngClass]="{'active': tab === authorType.ORGANIZATION}">
+                {{ 'Organization' | localize }}
+              </ion-card-title>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+      </ion-card-header>
+      <ion-card-content class="card-content">
+        <ion-grid (ionChange)="validateForm()" (ionBlur)="validateForm()">
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.firstName' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.firstName"
+                  (ionBlur)="form.touched.firstName = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.firstName && form.errors.firstName" color="danger" class="form-item-error">
+                {{form.errors.firstName | localize}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.lastName' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.lastName"
+                  (ionBlur)="form.touched.lastName = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.lastName && form.errors.lastName" color="danger" class="form-item-error">
+                {{form.errors.lastName | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.email' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="email" [(ngModel)]="form.values.email"
+                  (ionBlur)="form.touched.email = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.email && form.errors.email" color="danger" class="form-item-error">
+                {{form.errors.email | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.password' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="password" [(ngModel)]="form.values.password"
+                  (ionBlur)="form.touched.password = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.password && form.errors.password" color="danger" class="form-item-error">
+                <div class="form-item-error-password">
+                  {{form.errors.password | localize}}
+                  <ion-icon aria-label="" class="form-item-error-password-icon" name="help-circle-outline"></ion-icon>
+                  <div class="form-item-error-password-popper">
+                    <div>{{ 'errors.field.password.should.length' | localize }}</div>
+                    <div>{{ 'errors.field.password.should.upper' | localize }}</div>
+                    <div>{{ 'errors.field.password.should.lower' | localize }}</div>
+                    <div>{{ 'errors.field.password.should.number' | localize }}</div>
+                    <div>{{ 'errors.field.password.should.special' | localize }}</div>
+                  </div>
+                </div>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.confirmPassword' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="password" [(ngModel)]="form.values.confirmPassword"
+                  (ionBlur)="form.touched.confirmPassword = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.confirmPassword && form.errors.confirmPassword" color="danger"
+                class="form-item-error">
+                {{form.errors.confirmPassword | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.country' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.country"
+                  (ionBlur)="form.touched.country = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.country && form.errors.country" color="danger" class="form-item-error">
+                {{form.errors.country | localize}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.zipCode' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.zipCode"
+                  (ionBlur)="form.touched.zipCode = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.zipCode && form.errors.zipCode" color="danger" class="form-item-error">
+                {{form.errors.zipCode | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.number' | localize}}
+                </ion-label>
+                <ion-input class="form-item-input" type="text" [(ngModel)]="form.values.phoneNumber"
+                  (ionBlur)="form.touched.phoneNumber = true"></ion-input>
+              </ion-item>
+              <ion-text *ngIf="form.touched.phoneNumber && form.errors.phoneNumber" color="danger" class="form-item-error">
+                {{form.errors.phoneNumber | localize}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-item class="form-item" [disabled]="tab == authorType.USER || tab == authorType.ORGANIZATION">
+                <ion-label class="form-item-label" position="floating">
+                  {{'core.group' | localize}}
+                </ion-label>
+                <hmn-group-field class="form-item-input" type="text" id="group" [(ngModel)]="form.values.group"
+                  (onBlur)="form.touched.group = true" (onSearch)="searchGroups()" [list]="loadedGroups"></hmn-group-field>
+              </ion-item>
+              <ion-text *ngIf="form.touched.group && form.errors.group" color="danger" class="form-item-error">
+                {{form.errors.group | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="form-item">
+                <ion-label class="form-item-label" position="stacked">
+                  {{'core.birthDate' | localize}}
+                </ion-label>
+                <ion-datetime presentation="date" class="form-item-input" [(ngModel)]="form.values.birthDate"
+                  (ionBlur)="form.touched.birthDate = true" ></ion-datetime>
+              </ion-item>
+              <ion-text *ngIf="form.touched.birthDate && form.errors.birthDate" color="danger" class="form-item-error">
+                {{form.errors.birthDate | localize}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="onSubmit()" class="form-item-submit">
+                {{'pages.signup.button.signup' | localize }}</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <a routerLink="/login" class="form-item-link">{{ 'pages.signup.login' |localize }}</a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

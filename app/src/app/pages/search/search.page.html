@@ -1,0 +1,23 @@
+
+<ion-toolbar>
+  <hmn-search-bar [expanded]="true" [query]="projectDAOService.searchQuery" (onSearch)="onSearch($event)"></hmn-search-bar>
+</ion-toolbar>
+
+<ion-content>
+  <div class="search-body">
+    <hmn-infinite-list *ngIf="searchResult?.length > 0; else emptyInitiative" name="search"
+      (loadData)="onSearchMore($event)">
+      <div class="search-content">
+          <hmn-small-card *ngFor="let project of searchResult" class="search-content-small-card" [imageUrl]="project.images[0]" [title]="project.title"
+          [subtitle]="project.subtitle" [href]="'/project/'+project._id"></hmn-small-card>
+      </div>
+    </hmn-infinite-list>
+    <ng-template #emptyInitiative>
+      <div class="empty-list">
+        <hmn-empty-list label="core.noInitiatives"></hmn-empty-list>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>
+
+

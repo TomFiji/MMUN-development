@@ -1,0 +1,12 @@
+  <div class="content">
+  <ion-content class="content">
+    <ion-list class="list">
+      <ng-content #content></ng-content>
+    </ion-list>
+    <ion-infinite-scroll [threshold]="threshold" (ionInfinite)="loadData.emit({event: $event, name})">
+      <ion-infinite-scroll-content loadingSpinner="lines-sharp"
+        [loadingText]="'pages.discover.loading.projects' | localize">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+</div>

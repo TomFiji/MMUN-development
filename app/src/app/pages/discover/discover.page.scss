@@ -1,0 +1,198 @@
+.init {
+  &-wrapper {
+    height: 180px;
+    @media (min-width: 580px) {
+      & {
+        height: 210px;
+      }
+    }
+    @media (min-width: 860px) {
+      & {
+        height: 230px;
+      }
+    }
+  }
+
+  &-header {
+    text-align: left;
+    padding-left: 20px;
+    height: 40px;
+
+    &-title {
+      font-size: larger;
+      font-weight: bold;
+      text-transform: capitalize;
+      line-height: 20px;
+    }
+  }
+
+  &-content {
+    height: calc(100% - 40px);
+    transform: rotateX(180deg);
+
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-height: 200px;
+    & hmn-small-card {
+      transform: rotateX(180deg);
+    }
+    &::-webkit-scrollbar {
+      height: 3px;
+      width: 3px;
+      border-radius: 2px;
+      @media (min-width: 860px) {
+        & {
+          height: 5px;
+          width: 5px;
+        }
+      }
+    }
+    &::-webkit-scrollbar-track {
+      background: #ececec;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #acacac;
+    }
+
+    &-empty {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      transform: rotateX(180deg);
+      ::ng-deep {
+        .el-content {
+          display: flex !important;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.sdg {
+  &s {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    transform: rotateX(180deg);
+
+    &::-webkit-scrollbar {
+      height: 10px;
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      background: var(--ion-color-light);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--ion-color-dark);
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--ion-color-dark-tint);
+    }
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    height: calc(100% - 198px);
+    @media (min-width: 580px) {
+      & {
+        height: calc(100% - 228px);
+      }
+    }
+    @media (min-width: 860px) {
+      & {
+        height: calc(100% - 248px);
+      }
+    }
+    //Adjsuting height on different height screens
+    @media (max-height: 746px) {
+      & {
+        height: calc(100% - 125px);
+      }
+    }
+    @media (max-height: 680px) {
+      & {
+        height: calc(100% - 0px);
+      }
+    }
+  }
+
+  height: 100%;
+  min-width: 300px;
+  width: 300px;
+  transform: rotateX(180deg);
+
+  &-header {
+    text-align: center;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    margin-bottom: 1px;
+
+    &-title {
+      font-size: larger;
+      font-weight: bold;
+      line-height: 20px;
+      margin-right: -19px;
+    }
+  }
+
+  &-content {
+    height: calc(100% - 40px);
+    padding-top: 0px;
+    width: 100%;
+
+    &-list {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.active {
+  color: var(--ion-color-primary);
+  font-weight: bold;
+}
+
+@media (max-height: 380px) {
+  .sdg-content-list {
+    ::ng-deep {
+      .lc {
+        height: 250px;
+      }
+    }
+  }
+}
+
+.discover-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > ion-avatar{
+    width: auto;
+    --border-radius: none;
+    padding: 2px;
+  }
+}

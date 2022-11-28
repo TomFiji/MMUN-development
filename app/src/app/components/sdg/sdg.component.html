@@ -1,0 +1,13 @@
+<div class="sdg" [style]="{background: sdgColors[sdgNumber]}" [class.small]="small">
+  <div class="header">
+    <div class="number">
+      {{sdgNumber}}
+    </div>
+    <div class="title">
+      {{ 'sdg.' + sdgNumber | localize}}
+    </div>
+  </div>
+  <div class="icon">
+    <img [src]="sdgLogos[sdgNumber]">
+  </div>
+</div>

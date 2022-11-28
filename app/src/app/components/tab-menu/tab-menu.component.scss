@@ -1,0 +1,51 @@
+
+ion-tab-bar{
+  background-color: var(--tm-color-primary);
+  position: relative;
+  contain: none;
+  justify-content: space-between;
+  padding: 0% 8%;
+  min-height: 55px;
+}
+
+ion-tab-button{
+  --background: var(--tm-color-primary);
+  --background-color-selected: var(--tm-colorsecondary);
+  --color: var(--tm-color-secondary);
+  --color-selected: var(--tm-color-focus);
+  max-width: 55px;
+  height: 55px;
+}
+
+.active{
+  --background: var(--tm-color-secondary);
+  transform: translate(0, -25%);
+  border-radius: 50%;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media(min-width: 600px){
+  ion-tab-bar{
+    max-height: 50px;
+  }
+  ion-tab-button{
+    height: 50px;
+    max-width: 50px;
+  }
+}
+
+@media(max-width: 376px) {
+  ion-icon{
+    max-height: 25px;
+    max-width: 25px;
+  }
+  ion-tab-bar{
+    max-height: 45px;
+    min-height: 45px;
+  }
+  ion-tab-button{
+    max-height: 45px;
+    min-height: 45px;
+    max-width: 45px;
+  }
+}
